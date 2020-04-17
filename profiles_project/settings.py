@@ -25,7 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(8q8ms5a)&^^1gspt2wn0xt=@ha3ix-e^9h_#l3m#4=3usi78('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -157,5 +158,12 @@ STATIC_URL = '/static/'
 #AUTH_USER_MODEL = 'profiles_api.UserProfile'
 
 
+
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
