@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import dj_database_url
 import django_heroku
 import os
 
@@ -24,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(8q8ms5a)&^^1gspt2wn0xt=@ha3ix-e^9h_#l3m#4=3usi78('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -79,12 +80,39 @@ WSGI_APPLICATION = 'profiles_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'postgresql-flat-54119',
+
+        'USER': 'kkuxnmgpyqieqr',
+
+        'PASSWORD': 'fe36b00a130cb21750ed9d0d031f36a31bd9869250e0e6ddab5a09d5c7893f94',
+
+        'HOST': 'postgres://kkuxnmgpyqieqr:fe36b00a130cb21750ed9d0d031f36a31bd9869250e0e6ddab5a09d5c7893f94@ec2-18-233-137-77.compute-1.amazonaws.com:5432/dbjulq2pa3m0et',
+
+        'PORT': '5432',
+
     }
+
 }
+
+
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
